@@ -517,8 +517,7 @@ public class ColouredComponentPanel extends WebPanel
             if ( panel.isFocused () )
             {
                 // Background
-                g2d.setPaint ( new GradientPaint ( bounds.x, bounds.y, StyleConstants.topBgColor, bounds.x, bounds.y + bounds.height,
-                        StyleConstants.bottomBgColor ) );
+                g2d.setPaint ( StyleConstants.bottomBgColor );
                 g2d.fill ( bounds );
 
                 // Borders
