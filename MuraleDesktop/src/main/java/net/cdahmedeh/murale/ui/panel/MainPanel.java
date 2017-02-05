@@ -30,6 +30,7 @@ public class MainPanel extends WebPanel {
 
             WebMenuBar menuBar = new WebMenuBar();
             menuBar.setMenuBarStyle(MenuBarStyle.standalone);
+            menuBar.setUndecorated(true);
             add(menuBar, BorderLayout.WEST);
 
             setupMenuBar(menuBar);

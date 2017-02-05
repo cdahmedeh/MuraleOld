@@ -1,6 +1,7 @@
 package net.cdahmedeh.murale.ui.panel;
 
 import com.alee.extended.label.WebHotkeyLabel;
+import com.alee.extended.painter.TitledBorderPainter;
 import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
@@ -9,6 +10,7 @@ import com.alee.laf.radiobutton.WebRadioButton;
 import com.alee.laf.rootpane.WebFrame;
 import com.alee.laf.spinner.WebSpinner;
 import com.alee.laf.text.WebTextField;
+import com.alee.managers.style.skin.web.WebLabelPainter;
 import lombok.Getter;
 import lombok.Setter;
 import net.cdahmedeh.murale.domain.Provider;
