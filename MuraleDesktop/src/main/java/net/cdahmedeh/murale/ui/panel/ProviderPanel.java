@@ -3,6 +3,7 @@ package net.cdahmedeh.murale.ui.panel;
 import com.alee.extended.panel.GroupPanel;
 import com.alee.global.StyleConstants;
 import com.alee.laf.WebLookAndFeel;
+import com.alee.laf.button.WebButton;
 import com.alee.laf.combobox.WebComboBox;
 import com.alee.laf.panel.WebPanel;
 import com.alee.laf.panel.WebPanelUI;
@@ -69,8 +70,11 @@ public class ProviderPanel extends WebPanel {
 
     public class ButtonPanel extends GroupPanel {
         public ButtonPanel() {
-            JButton settingsButton = new JButton();
+            WebButton settingsButton = new WebButton();
             settingsButton.setIcon(Icons.getIcon("settings"));
+            settingsButton.setRound(2);
+            settingsButton.setRolloverDecoratedOnly(true);
+            settingsButton.setDrawFocus(true);
             add(settingsButton);
 
             settingsButton.addActionListener(new ActionListener() {
@@ -83,10 +87,12 @@ public class ProviderPanel extends WebPanel {
                 }
             });
 
-            JButton deleteButton = new JButton();
+            WebButton deleteButton = new WebButton();
             deleteButton.setIcon(Icons.getIcon("delete"));
+            deleteButton.setRolloverDecoratedOnly(true);
+            deleteButton.setDrawFocus(true);
             add(deleteButton);
-
+            deleteButton.setRound(2);
             setOpaque(false);
         }
     }

@@ -1,5 +1,6 @@
 package net.cdahmedeh.murale.ui.panel;
 
+import com.alee.extended.button.WebSplitButton;
 import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.menu.MenuBarStyle;
@@ -39,10 +40,12 @@ public class MainPanel extends WebPanel {
 
     public class HeaderButtonPanel extends GroupPanel {
         public HeaderButtonPanel() {
-            JButton addGenre = new JButton("Add Preset", Icons.getIcon("add-genre"));
+            WebSplitButton addGenre = new WebSplitButton("Add Preset", Icons.getIcon("add-genre"));
+            addGenre.setAlwaysShowMenu(true);
             add(addGenre);
 
-            JButton addProvider = new JButton("Add Provider", Icons.getIcon("add-provider"));
+            WebSplitButton addProvider = new WebSplitButton("Add Provider", Icons.getIcon("add-provider"));
+            addProvider.setAlwaysShowMenu(true);
             add(addProvider);
         }
     }
