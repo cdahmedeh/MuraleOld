@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class MainFrame extends WebFrame {
     public MainFrame() {
-        setBounds(100,100,800,600);
+        setBounds(100,100,640,480);
 
         MainPanel mainPanel = new MainPanel();
         add(mainPanel, BorderLayout.CENTER);
