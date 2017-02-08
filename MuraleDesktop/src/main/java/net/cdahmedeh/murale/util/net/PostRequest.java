@@ -1,6 +1,9 @@
 package net.cdahmedeh.murale.util.net;
 
+import com.google.gson.Gson;
+import net.cdahmedeh.murale.error.DataFormatException;
 import net.cdahmedeh.murale.error.InternetConnectionException;
+import net.cdahmedeh.murale.provider.reddit.api.RedditResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -13,6 +16,7 @@ import org.apache.http.message.BasicNameValuePair;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +32,13 @@ public abstract class PostRequest {
 
     public abstract String getUrl();
 
-    public abstract Map<String, String> getHeaders();
+    public Map<String, String> getHeaders() {
+        return new HashMap<>();
+    };
 
-    public abstract Map<String, String> getParams();
+    public Map<String, String> getParams() {
+        return new HashMap<>();
+    };
 
     public String get() {
         if (responseContent == null) {
@@ -53,12 +61,17 @@ public abstract class PostRequest {
 
                 responseContent = IOUtils.toString(response.getEntity().getContent());
             } catch (UnsupportedEncodingException ex) {
-                ex.printStackTrace();
+                throw new DataFormatException("Unable to parse request", ex);
             } catch (IOException ex) {
                 throw new InternetConnectionException("Unable to make HTTP request", ex);
             }
         }
 
         return responseContent;
+    }
+
+    public <E> E getJson(Class<E> clazz) {
+        get();
+        return new Gson().fromJson(responseContent, clazz);
     }
 }

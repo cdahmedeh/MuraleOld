@@ -1,6 +1,6 @@
 package net.cdahmedeh.murale.ui.template;
 
-import net.cdahmedeh.murale.domain.Provider;
+import net.cdahmedeh.murale.provider.Provider;
 
 /**
  * Created by cdahmedeh on 2/5/2017.

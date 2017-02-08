@@ -1,16 +1,22 @@
 package net.cdahmedeh.murale.domain;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.UUID;
 
 /**
  * Created by cdahmedeh on 1/30/2017.
  */
-@ToString
+@RequiredArgsConstructor
 public class Wallpaper {
-    @Getter @Setter private String title;
-    @Getter @Setter private String author;
-    @Getter @Setter private String page;
-    @Getter @Setter private String url;
+    @Getter private final String uuid = UUID.randomUUID().toString();
+    @Getter private final String title;
+    @Getter private final String author;
+    @Getter private final String origin;
+    @Getter private final String url;
+
+    @Getter @Setter private String location;
 }

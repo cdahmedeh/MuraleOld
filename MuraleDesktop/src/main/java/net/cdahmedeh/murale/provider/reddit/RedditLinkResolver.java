@@ -1,6 +1,6 @@
 package net.cdahmedeh.murale.provider.reddit;
 
-import net.cdahmedeh.murale.provider.reddit.noembed.NoEmbedJson;
+import net.cdahmedeh.murale.provider.reddit.noembed.NoEmbedData;
 import net.cdahmedeh.murale.provider.reddit.noembed.NoEmbedRequest;
 import net.cdahmedeh.murale.util.net.NetTools;
 import org.jsoup.Jsoup;
@@ -71,10 +71,9 @@ public class RedditLinkResolver {
     private static String resolveFlickr(String url) {
         NoEmbedRequest noEmbedRequest = new NoEmbedRequest();
         noEmbedRequest.setOriginalUrl(url);
-        noEmbedRequest.get();
 
-        NoEmbedJson noEmbedJson = noEmbedRequest.getJson();
-        return noEmbedJson.getMedia_url();
+        NoEmbedData noEmbedData = noEmbedRequest.getJson(NoEmbedData.class);
+        return noEmbedData.getMedia_url();
     }
 
     private static boolean isReddit(String url) {

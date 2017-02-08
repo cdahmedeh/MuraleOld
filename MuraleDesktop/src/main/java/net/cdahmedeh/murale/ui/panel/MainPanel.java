@@ -6,27 +6,32 @@ import com.alee.laf.button.WebButton;
 import com.alee.laf.menu.MenuBarStyle;
 import com.alee.laf.menu.WebMenu;
 import com.alee.laf.menu.WebMenuBar;
+import com.alee.laf.menu.WebMenuItem;
 import com.alee.laf.panel.WebPanel;
 import com.alee.managers.hotkey.Hotkey;
+import net.cdahmedeh.murale.app.AppContext;
 import net.cdahmedeh.murale.icon.Icons;
+import net.cdahmedeh.murale.ui.starter.UIStarter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by cdahmedeh on 2/4/2017.
  */
 public class MainPanel extends WebPanel {
+    public MainPanel() {
+        add(new HeaderPanel(), BorderLayout.NORTH);
+        add(new ProvidersPanel(), BorderLayout.CENTER);
+        add(new CurrentWallpaperPanel(), BorderLayout.SOUTH);
+    }
+
     public class HeaderPanel extends WebPanel {
         public HeaderPanel() {
             setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-
-//            JLabel providers = new JLabel("Wallpaper Providers");
-//            Font providersFont = providers.getFont();
-//            Font newFont = new Font(providersFont.getName(), providersFont.getStyle(), 18);
-//            providers.setFont(newFont);
-//            add(providers, BorderLayout.WEST);
 
             WebMenuBar menuBar = new WebMenuBar();
             menuBar.setMenuBarStyle(MenuBarStyle.standalone);
@@ -58,15 +63,21 @@ public class MainPanel extends WebPanel {
         }
     }
 
-    public MainPanel() {
-        add(new HeaderPanel(), BorderLayout.NORTH);
-        add(new ProvidersPanel(), BorderLayout.CENTER);
-    }
-
     public void setupMenuBar (WebMenuBar menuBar) {
         menuBar.add(new WebMenu("File", Icons.getIcon("file")));
-        menuBar.add(new WebMenu("Wallpaper", Icons.getIcon("wallpaper")));
+        WebMenu wallpaperMenu = new WebMenu("Wallpaper", Icons.getIcon("wallpaper"));
+        menuBar.add(wallpaperMenu);
         menuBar.add(new WebMenu("Options", Icons.getIcon("config")));
         menuBar.add(new WebMenu("Help", Icons.getIcon("help")));
+
+        WebMenuItem nextWallpaperItem = new WebMenuItem("Next Wallpaper", Icons.getIcon("next"));
+        wallpaperMenu.add(nextWallpaperItem);
+
+        nextWallpaperItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AppContext.getWallpaperFlow().nextWallpaper();
+            }
+        });
     }
 }

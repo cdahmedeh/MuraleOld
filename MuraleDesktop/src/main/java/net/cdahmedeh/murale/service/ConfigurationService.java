@@ -1,7 +1,8 @@
 package net.cdahmedeh.murale.service;
 
-import net.cdahmedeh.murale.domain.Provider;
-import net.cdahmedeh.murale.domain.UserConfiguration;
+import net.cdahmedeh.murale.error.ConfigurationErrorException;
+import net.cdahmedeh.murale.provider.Provider;
+import net.cdahmedeh.murale.domain.Configuration;
 import org.ini4j.Profile.Section;
 import org.ini4j.Wini;
 
@@ -19,7 +20,9 @@ import java.util.Map.Entry;
  * Created by cdahmedeh on 1/30/2017.
  */
 public class ConfigurationService {
-    private static final String PROVIDER_CONFIG_LOCATION = "C:/Users/cdahmedeh/.murale/providers/";
+    private static final String PROVIDER_CONFIG_LOCATION = System.getProperty("user.home") + "/.murale/providers/";
+    private static final String CONFIG_LOCATION = System.getProperty("user.home") + "/.murale/";
+    private static final String CONFIG_FILENAME = "config.ini";
 
     public static List<Provider> loadProviders() {
         List<Provider> providers = new ArrayList<>();
@@ -47,18 +50,8 @@ public class ConfigurationService {
 
                 providers.add(provider);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new ConfigurationErrorException("Unable to read provider configuration files", e);
         }
 
         return providers;
@@ -72,7 +65,9 @@ public class ConfigurationService {
             providerConfigDir.mkdirs();
 
             File providerConfigFile = new File(PROVIDER_CONFIG_LOCATION + providerFileName);
-            providerConfigFile.createNewFile();
+            if (providerConfigFile.exists() == false) {
+                providerConfigFile.createNewFile();
+            }
 
             Wini ini = new Wini(providerConfigFile);
 
@@ -82,11 +77,54 @@ public class ConfigurationService {
 
             ini.store();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ConfigurationErrorException("Unable to save provider configuration file", e);
         }
     }
 
-    public static UserConfiguration loadUserConfiguration() {
-        return null;
+    public static Configuration loadUserConfiguration() {
+        Configuration configuration = null;
+
+        try {
+                File configDir = new File(CONFIG_LOCATION);
+                configDir.mkdirs();
+
+                File configFile = new File(CONFIG_LOCATION + CONFIG_FILENAME);
+
+                if (configFile.exists() == false) {
+                    saveConfiguration(new Configuration());
+                }
+
+                Map<String, String> configMap = new HashMap<>();
+
+                Wini ini = new Wini(configFile);
+
+                configuration = new Configuration();
+
+                configuration.setWaitTime(Integer.parseInt(ini.get("config", "waittime")));
+        } catch (IOException e) {
+            throw new ConfigurationErrorException("Unable to read configuration file", e);
+        }
+
+        return configuration;
+    }
+
+    public static void saveConfiguration(Configuration configuration) {
+        try {
+            File configDir = new File(CONFIG_LOCATION);
+            configDir.mkdirs();
+
+            File configFile = new File(CONFIG_LOCATION + CONFIG_FILENAME);
+            if (configFile.exists() == false) {
+                configFile.createNewFile();
+            }
+
+            Wini ini = new Wini(configFile);
+
+            ini.put("config", "waittime", configuration.getWaitTime());
+
+            ini.store();
+        } catch (IOException e) {
+            throw new ConfigurationErrorException("Unable to save provider configuration file", e);
+        }
     }
 }

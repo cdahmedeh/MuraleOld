@@ -32,8 +32,4 @@ public class RedditAuthRequest extends PostRequest {
         params.put("device_id", UUID.randomUUID().toString());
         return params;
     }
-
-    public RedditAuthToken getJson() {
-        return new Gson().fromJson(responseContent, RedditAuthToken.class);
-    }
 }

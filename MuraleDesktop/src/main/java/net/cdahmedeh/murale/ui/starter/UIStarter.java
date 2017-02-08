@@ -1,7 +1,6 @@
 package net.cdahmedeh.murale.ui.starter;
 
 import com.alee.laf.WebLookAndFeel;
-import com.google.common.eventbus.EventBus;
 import net.cdahmedeh.murale.ui.frame.MainFrame;
 
 /**

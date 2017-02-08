@@ -1,8 +1,5 @@
 package net.cdahmedeh.murale.ui.panel;
 
-import com.alee.extended.label.WebHotkeyLabel;
-import com.alee.extended.painter.TitledBorderPainter;
-import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
@@ -10,10 +7,9 @@ import com.alee.laf.radiobutton.WebRadioButton;
 import com.alee.laf.rootpane.WebFrame;
 import com.alee.laf.spinner.WebSpinner;
 import com.alee.laf.text.WebTextField;
-import com.alee.managers.style.skin.web.WebLabelPainter;
 import lombok.Getter;
 import lombok.Setter;
-import net.cdahmedeh.murale.domain.Provider;
+import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.service.ConfigurationService;
@@ -24,7 +20,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 import static net.cdahmedeh.murale.provider.reddit.RedditProvider.RedditMode.*;
 import static net.cdahmedeh.murale.provider.reddit.RedditProvider.RedditTime.*;

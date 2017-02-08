@@ -18,13 +18,4 @@ public class NoEmbedRequest extends GetRequest {
     public String getUrl() {
         return "https://noembed.com/embed?url=" + originalUrl;
     }
-
-    @Override
-    public Map<String, String> getHeaders() {
-        return new HashMap<>();
-    }
-
-    public NoEmbedJson getJson() {
-        return new Gson().fromJson(responseContent, NoEmbedJson.class);
-    }
 }

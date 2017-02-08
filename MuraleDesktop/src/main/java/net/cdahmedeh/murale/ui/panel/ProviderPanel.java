@@ -1,18 +1,14 @@
 package net.cdahmedeh.murale.ui.panel;
 
 import com.alee.extended.panel.GroupPanel;
-import com.alee.global.StyleConstants;
-import com.alee.laf.WebLookAndFeel;
 import com.alee.laf.button.WebButton;
-import com.alee.laf.combobox.WebComboBox;
+import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
-import com.alee.laf.panel.WebPanelUI;
 import lombok.Getter;
 import lombok.Setter;
-import net.cdahmedeh.murale.domain.Provider;
+import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
-import net.cdahmedeh.murale.ui.component.HorizontalSeperator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,42 +25,30 @@ public class ProviderPanel extends WebPanel {
     public ProviderPanel(Provider provider) {
         this.provider = provider;
 
-//        setStyleId(StyleId.panelTransparent);
-        setOpaque(false);
-        setBackground(Color.white);
-
         setLayout(new BorderLayout());
 
-        add(new TitlePanel(), BorderLayout.WEST);
-
-        add(new ButtonPanel(), BorderLayout.EAST);
-
-//        HorizontalSeperator comp = new HorizontalSeperator();
-//        add(comp, BorderLayout.SOUTH);
-
+        setOpaque(false);
+        setBackground(Color.white);
         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        add(new TitlePanel(), BorderLayout.WEST);
+        add(new ButtonPanel(), BorderLayout.EAST);
     }
 
     public class TitlePanel extends WebPanel {
         public TitlePanel() {
             setLayout(new BorderLayout());
 
-            JLabel title = new JLabel();
+            WebLabel title = new WebLabel(provider.getName());
             title.setIcon(Icons.getIcon("reddit"));
-            Font titleFont = title.getFont();
-            Font newTitleFont = new Font(titleFont.getName(), titleFont.getStyle(), 16);
-            title.setFont(newTitleFont);
-            title.setText(provider.getTitle());
+            title.setFontSize(16);
             add(title, BorderLayout.NORTH);
 
             JLabel description = new JLabel();
-            description.setText(provider.getInfo());
+            description.setText(provider.getDescription());
             add(description, BorderLayout.SOUTH);
 
             setOpaque(false);
-//            setBackground(Color.white);
-
-
         }
     }
 
@@ -80,10 +64,7 @@ public class ProviderPanel extends WebPanel {
             settingsButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (provider instanceof RedditProvider) {
-                        RedditPanel redditPanel = new RedditPanel();
-                        redditPanel.loadProvider((RedditProvider)provider);
-                    }
+                    loadSettings();
                 }
             });
 
@@ -94,6 +75,13 @@ public class ProviderPanel extends WebPanel {
             add(deleteButton);
             deleteButton.setRound(2);
             setOpaque(false);
+        }
+    }
+
+    private void loadSettings() {
+        if (provider instanceof RedditProvider) {
+            RedditPanel redditPanel = new RedditPanel();
+            redditPanel.loadProvider((RedditProvider)provider);
         }
     }
 }

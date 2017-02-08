@@ -1,8 +1,10 @@
 package net.cdahmedeh.murale.util.net;
 
+import com.google.gson.Gson;
 import com.sun.xml.internal.bind.v2.util.QNameMap;
 import lombok.Getter;
 import lombok.Setter;
+import net.cdahmedeh.murale.error.DataFormatException;
 import net.cdahmedeh.murale.error.InternetConnectionException;
 import net.cdahmedeh.murale.util.net.NetTools;
 import org.apache.commons.io.IOUtils;
@@ -23,13 +25,11 @@ import java.util.Map.Entry;
 public abstract class GetRequest {
     protected String responseContent = null;
 
-    public GetRequest() {
-
-    }
-
     public abstract String getUrl();
 
-    public abstract Map<String, String> getHeaders();
+    public Map<String, String> getHeaders() {
+        return new HashMap<>();
+    };
 
     public String get() {
         if (responseContent == null) {
@@ -44,12 +44,17 @@ public abstract class GetRequest {
                 CloseableHttpResponse response = client.execute(request);
                 responseContent = IOUtils.toString(response.getEntity().getContent());
             } catch (UnsupportedEncodingException ex) {
-                ex.printStackTrace();
+                throw new DataFormatException("Unable to parse request", ex);
             } catch (IOException ex) {
                 throw new InternetConnectionException("Unable to make HTTP request", ex);
             }
         }
 
         return responseContent;
+    }
+
+    public <E> E getJson(Class<E> clazz) {
+        get();
+        return new Gson().fromJson(responseContent, clazz);
     }
 }

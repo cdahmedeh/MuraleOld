@@ -14,16 +14,9 @@ public class CollectionTools {
      * @param list The list to pick from.
      * @return A random element from the list.
      */
-    public static <E> E pickRandom(Collection<E> list) {
-        int size = list.size();
-        int randomIndex = ThreadLocalRandom.current().nextInt(size);
-
-        Iterator<E> iterator = list.iterator();
-        E value = null;
-        for (int i = 0; i < randomIndex; i++) {
-            value = iterator.next();
-        }
-
-        return value;
+    public static <E> E pickRandom(Collection<E> e) {
+        return e.stream()
+                .skip((int) (e.size() * Math.random()))
+                .findFirst().get();
     }
 }

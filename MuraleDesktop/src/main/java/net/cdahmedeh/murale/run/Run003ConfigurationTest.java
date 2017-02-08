@@ -1,10 +1,9 @@
 package net.cdahmedeh.murale.run;
 
-import net.cdahmedeh.murale.domain.Provider;
+import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.service.ConfigurationService;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**

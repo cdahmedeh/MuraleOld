@@ -1,6 +1,7 @@
 package net.cdahmedeh.murale.icon;
 
 import com.google.common.io.Resources;
+import net.cdahmedeh.murale.error.ResourceMissingException;
 
 import javax.swing.*;
 import java.net.URL;
@@ -24,8 +25,7 @@ public class Icons {
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
-            System.err.println("Couldn't find file: " + iconName);
-            return null;
+            throw new ResourceMissingException("Could not find icon " + iconName);
         }
     }
 }
