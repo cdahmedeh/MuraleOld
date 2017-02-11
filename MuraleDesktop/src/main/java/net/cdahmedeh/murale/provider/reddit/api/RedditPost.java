@@ -1,5 +1,6 @@
 package net.cdahmedeh.murale.provider.reddit.api;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
 /**
@@ -23,4 +24,8 @@ public class RedditPost {
 
     @Getter
     private String title;
+
+    @Getter
+    @SerializedName("over_18")
+    private boolean nsfw;
 }

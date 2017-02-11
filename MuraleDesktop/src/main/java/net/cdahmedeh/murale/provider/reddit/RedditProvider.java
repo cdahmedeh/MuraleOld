@@ -1,7 +1,9 @@
 package net.cdahmedeh.murale.provider.reddit;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Getter;
 import lombok.Setter;
+import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.domain.Wallpaper;
 import net.cdahmedeh.murale.provider.reddit.api.*;
@@ -26,6 +28,7 @@ public class RedditProvider extends Provider {
     private static RedditMode defaultMode = RedditMode.Hot;
     private static RedditTime defaultTime = RedditTime.Month;
     private static int defaultCount = 25;
+    private static boolean defaultNsfw = false;
 
     @Getter @Setter
     private String subreddit = defaultSubreddit;
@@ -39,6 +42,9 @@ public class RedditProvider extends Provider {
     @Getter @Setter
     private int redditCount = defaultCount;
 
+    @Getter @Setter
+    private boolean nsfw = defaultNsfw;
+
      @Override
     public String getName() {
         return "Reddit";
@@ -46,7 +52,7 @@ public class RedditProvider extends Provider {
 
     @Override
     public String getDescription() {
-        return "<html> subreddit: <b>" + subreddit + "</b> - " + redditCount + " "
+        return "<html>subreddit: <b>" + subreddit + "</b> - " + redditCount + " "
                 + redditMode.toString().toLowerCase() + " posts from past "
                 + redditTime.toString().toLowerCase() + "</html>";
     }
@@ -58,6 +64,7 @@ public class RedditProvider extends Provider {
         redditMode = RedditMode.valueOf(configuration.getOrDefault("mode", defaultMode.toString()));
         redditTime = RedditTime.valueOf(configuration.getOrDefault("time", defaultTime.toString()));
         redditCount = Integer.valueOf(configuration.getOrDefault("count", String.valueOf(defaultCount)));
+        nsfw = Boolean.valueOf(configuration.getOrDefault("nsfw", String.valueOf(defaultNsfw)));
     }
 
     @Override
@@ -68,6 +75,7 @@ public class RedditProvider extends Provider {
         configuration.put("time", redditTime.name());
         configuration.put("count", String.valueOf(redditCount));
         configuration.put("subreddit", subreddit);
+        configuration.put("nsfw", Boolean.toString(nsfw));
 
         return configuration;
     }
@@ -89,6 +97,10 @@ public class RedditProvider extends Provider {
 
             Collection<RedditEntry> redditEntries = redditResponse.getData().getChildren();
             RedditPost redditPost = CollectionTools.pickRandom(redditEntries).getData();
+
+            if (isNsfw() == false && redditPost.isNsfw()) {
+                continue;
+            }
 
             resolvedUrl = RedditLinkResolver.resolve(redditPost.getUrl());
 

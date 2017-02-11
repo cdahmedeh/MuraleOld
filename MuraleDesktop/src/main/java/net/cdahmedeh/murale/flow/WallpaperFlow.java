@@ -2,6 +2,7 @@ package net.cdahmedeh.murale.flow;
 
 import lombok.Getter;
 import net.cdahmedeh.murale.app.AppContext;
+import net.cdahmedeh.murale.event.TimePassedEvent;
 import net.cdahmedeh.murale.event.WallpaperRequestEvent;
 import net.cdahmedeh.murale.event.WallpaperRetrievedEvent;
 import net.cdahmedeh.murale.provider.Provider;
@@ -38,6 +39,9 @@ public class WallpaperFlow {
                         timeLeft--;
                     }
 
+                    System.out.println(timeLeft);
+                    AppContext.getEventBus().post(new TimePassedEvent());
+
                     if (timeLeft == 0) {
                         nextWallpaper();
                     }
@@ -46,6 +50,10 @@ public class WallpaperFlow {
         });
 
         timerThread.start();
+    }
+
+    public void loadConfiguration() {
+        timeLeft = ConfigurationService.loadUserConfiguration().getWaitTime() * 60;
     }
 
     public void nextWallpaper() {

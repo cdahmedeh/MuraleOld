@@ -2,6 +2,7 @@ package net.cdahmedeh.murale.ui.frame;
 
 import com.alee.laf.WebLookAndFeel;
 import com.alee.laf.rootpane.WebFrame;
+import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.run.Run006MainPanel;
 import net.cdahmedeh.murale.ui.panel.MainPanel;
 
@@ -13,13 +14,16 @@ import java.awt.*;
  */
 public class MainFrame extends WebFrame {
     public MainFrame() {
+        setTitle("Murale");
+        setIconImage(Icons.getIcon("murale").getImage());
+
         setSize(640, 540);
         setLocationRelativeTo(null);
 
         MainPanel mainPanel = new MainPanel();
         add(mainPanel, BorderLayout.CENTER);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
 }

@@ -1,6 +1,8 @@
 package net.cdahmedeh.murale.service;
 
+import net.cdahmedeh.murale.app.AppContext;
 import net.cdahmedeh.murale.error.ConfigurationErrorException;
+import net.cdahmedeh.murale.event.ProviderUpdatedEvent;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.domain.Configuration;
 import org.ini4j.Profile.Section;
@@ -76,9 +78,23 @@ public class ConfigurationService {
             }
 
             ini.store();
+
+            AppContext.getEventBus().post(new ProviderUpdatedEvent());
         } catch (IOException e) {
             throw new ConfigurationErrorException("Unable to save provider configuration file", e);
         }
+    }
+
+    public static void deleteProvider(Provider provider) {
+        String providerFileName = provider.getUuid() + ".ini";
+
+        File providerConfigDir = new File(PROVIDER_CONFIG_LOCATION);
+        providerConfigDir.mkdirs();
+
+        File providerConfigFile = new File(PROVIDER_CONFIG_LOCATION + providerFileName);
+        providerConfigFile.delete();
+
+        AppContext.getEventBus().post(new ProviderUpdatedEvent());
     }
 
     public static Configuration loadUserConfiguration() {

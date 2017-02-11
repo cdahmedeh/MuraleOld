@@ -6,9 +6,11 @@ import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import lombok.Getter;
 import lombok.Setter;
+import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
+import net.cdahmedeh.murale.service.ConfigurationService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,6 +77,13 @@ public class ProviderPanel extends WebPanel {
             add(deleteButton);
             deleteButton.setRound(2);
             setOpaque(false);
+
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ConfigurationService.deleteProvider(provider);
+                }
+            });
         }
     }
 

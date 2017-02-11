@@ -1,6 +1,7 @@
 package net.cdahmedeh.murale.ui.panel;
 
 import com.alee.laf.button.WebButton;
+import com.alee.laf.checkbox.WebCheckBox;
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import com.alee.laf.radiobutton.WebRadioButton;
@@ -9,6 +10,8 @@ import com.alee.laf.spinner.WebSpinner;
 import com.alee.laf.text.WebTextField;
 import lombok.Getter;
 import lombok.Setter;
+import net.cdahmedeh.murale.app.AppContext;
+import net.cdahmedeh.murale.event.ProviderUpdatedEvent;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
@@ -47,6 +50,7 @@ public class RedditPanel extends WebFrame implements ProviderDialog<RedditProvid
     private WebRadioButton yearButton;
     private WebRadioButton allButton;
     private WebSpinner countField;
+    private WebCheckBox nsfwCheck;
 
     public RedditPanel() {
         setBounds(new Rectangle(640, 480));
@@ -131,6 +135,15 @@ public class RedditPanel extends WebFrame implements ProviderDialog<RedditProvid
             countField = new WebSpinner();
             countField.setValue(25);
             add(countField, "width 100, wrap");
+
+            //--
+            WebLabel nsfwLabel;
+            nsfwLabel = new WebLabel("Show NSFW Content");
+            nsfwLabel.setBoldFont(true);
+            add(nsfwLabel, "width 60, height 20");
+            nsfwCheck = new WebCheckBox();
+            nsfwCheck.setSelected(false);
+            add(nsfwCheck, "wrap");
         }
     }
 
@@ -183,6 +196,7 @@ public class RedditPanel extends WebFrame implements ProviderDialog<RedditProvid
         }
 
         countField.setValue(provider.getRedditCount());
+        nsfwCheck.setSelected(provider.isNsfw());
     }
 
     @Override
@@ -218,6 +232,7 @@ public class RedditPanel extends WebFrame implements ProviderDialog<RedditProvid
         }
 
         provider.setRedditCount(Integer.valueOf(countField.getValue().toString()));
+        provider.setNsfw(nsfwCheck.isSelected());
 
         return provider;
     }
