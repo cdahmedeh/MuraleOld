@@ -46,9 +46,14 @@ public class CurrentWallpaperPanel extends WebPanel {
     public CurrentWallpaperPanel() {
         AppContext.getEventBus().register(this);
 
-        setPreferredHeight(145);
+        WebPanel borderPanel = new WebPanel();
+        add(borderPanel);
 
-        setBorder(BorderFactory.createTitledBorder("Current Wallpaper"));
+        setMargin(0, 3, 2, 2);
+
+        borderPanel.setPreferredHeight(145);
+
+        borderPanel.setBorder(BorderFactory.createTitledBorder("Current Wallpaper"));
 
         overlay = new WebProgressOverlay();
         overlay.setProgressColor(Color.WHITE);
@@ -69,13 +74,13 @@ public class CurrentWallpaperPanel extends WebPanel {
 
         overlay.setComponent(image);
 
-        add(new InfoPanel(), BorderLayout.CENTER);
-        add(overlay, BorderLayout.WEST);
+        borderPanel.add(new InfoPanel(), BorderLayout.CENTER);
+        borderPanel.add(overlay, BorderLayout.WEST);
 
         statusBar = new WebProgressBar();
         statusBar.setStringPainted(true);
         statusBar.setString("");
-        add(statusBar, BorderLayout.SOUTH);
+        borderPanel.add(statusBar, BorderLayout.SOUTH);
     }
 
     @Subscribe
