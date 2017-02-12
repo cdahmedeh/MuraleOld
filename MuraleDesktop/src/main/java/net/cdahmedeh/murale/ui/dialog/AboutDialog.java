@@ -4,11 +4,15 @@ import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import com.alee.laf.rootpane.WebDialog;
 import com.alee.laf.rootpane.WebFrame;
+import net.cdahmedeh.murale.app.AppConstants;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.ui.panel.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static net.cdahmedeh.murale.app.AppConstants.APP_CODENAME;
+import static net.cdahmedeh.murale.app.AppConstants.APP_VERSION;
 
 /**
  * Created by cdahmedeh on 2/9/2017.
@@ -32,7 +36,7 @@ public class AboutDialog extends WebDialog {
         WebLabel appName = new WebLabel("Murale");
         appName.setAlignmentX(CENTER_ALIGNMENT);
         appName.setFontSize(30);
-        WebLabel version = new WebLabel("Version 0.1 Inception");
+        WebLabel version = new WebLabel("Version " + APP_VERSION + " " + APP_CODENAME);
         version.setAlignmentX(CENTER_ALIGNMENT);
         version.setFontSize(20);
         JLabel imageIcon = new JLabel(Icons.getIcon("murale"));

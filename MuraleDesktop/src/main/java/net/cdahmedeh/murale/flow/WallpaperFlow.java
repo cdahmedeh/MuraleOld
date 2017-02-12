@@ -74,4 +74,8 @@ public class WallpaperFlow {
         });
         thread.start();
     }
+
+    public void setTimer(int seconds) {
+        timeLeft = seconds;
+    }
 }

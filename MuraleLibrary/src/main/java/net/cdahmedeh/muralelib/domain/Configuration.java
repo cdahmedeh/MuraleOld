@@ -8,5 +8,5 @@ import lombok.Setter;
  */
 public class Configuration {
     @Getter @Setter
-    private int waitTime = 25;
+    private int waitTime = 60;
 }
