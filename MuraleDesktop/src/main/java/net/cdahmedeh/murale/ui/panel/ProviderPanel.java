@@ -3,6 +3,7 @@ package net.cdahmedeh.murale.ui.panel;
 import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
+import com.alee.laf.optionpane.WebOptionPane;
 import com.alee.laf.panel.WebPanel;
 import lombok.Getter;
 import lombok.Setter;
@@ -81,7 +82,10 @@ public class ProviderPanel extends WebPanel {
             deleteButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ConfigurationService.deleteProvider(provider);
+                    int result = WebOptionPane.showConfirmDialog(ProviderPanel.this, "Are you sure you want to remove this provider?", "Confirm Deletion...", WebOptionPane.YES_NO_OPTION);
+                    if (result == WebOptionPane.OK_OPTION) {
+                        ConfigurationService.deleteProvider(provider);
+                    }
                 }
             });
         }
