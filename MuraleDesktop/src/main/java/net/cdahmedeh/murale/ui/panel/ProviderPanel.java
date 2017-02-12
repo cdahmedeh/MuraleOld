@@ -6,11 +6,11 @@ import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import lombok.Getter;
 import lombok.Setter;
-import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.service.ConfigurationService;
+import net.cdahmedeh.murale.ui.dialog.RedditDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,7 @@ public class ProviderPanel extends WebPanel {
             setLayout(new BorderLayout());
 
             WebLabel title = new WebLabel(provider.getName());
-            title.setIcon(Icons.getIcon("reddit"));
+            title.setIcon(Icons.getIcon(provider.getIconName()));
             title.setFontSize(16);
             add(title, BorderLayout.NORTH);
 
@@ -89,8 +89,7 @@ public class ProviderPanel extends WebPanel {
 
     private void loadSettings() {
         if (provider instanceof RedditProvider) {
-            RedditPanel redditPanel = new RedditPanel();
-            redditPanel.loadProvider((RedditProvider)provider);
+            RedditDialog redditDialog = new RedditDialog((RedditProvider)provider);
         }
     }
 }

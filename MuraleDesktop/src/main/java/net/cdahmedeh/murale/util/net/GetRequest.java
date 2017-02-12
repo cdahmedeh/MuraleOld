@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.cdahmedeh.murale.error.DataFormatException;
 import net.cdahmedeh.murale.error.InternetConnectionException;
+import net.cdahmedeh.murale.logging.Logging;
 import net.cdahmedeh.murale.util.net.NetTools;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.ClientProtocolException;
@@ -20,6 +21,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
+ * Template for a JSON GET HTTP Request
+ *
  * Created by cdahmedeh on 1/28/2017.
  */
 public abstract class GetRequest {
@@ -44,9 +47,13 @@ public abstract class GetRequest {
                 CloseableHttpResponse response = client.execute(request);
                 responseContent = IOUtils.toString(response.getEntity().getContent());
             } catch (UnsupportedEncodingException ex) {
-                throw new DataFormatException("Unable to parse request", ex);
+                String message = "Unable to parse request";
+                Logging.error(ex, message);
+                throw new DataFormatException(message, ex);
             } catch (IOException ex) {
-                throw new InternetConnectionException("Unable to make HTTP request", ex);
+                String message = "Unable to make HTTP request";
+                Logging.error(ex, message);
+                throw new InternetConnectionException(message, ex);
             }
         }
 

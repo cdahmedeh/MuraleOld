@@ -10,10 +10,9 @@ import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.domain.Wallpaper;
 import net.cdahmedeh.murale.service.ConfigurationService;
 import net.cdahmedeh.murale.service.DesktopService;
-import net.cdahmedeh.murale.util.sys.TimeTools;
+import net.cdahmedeh.murale.util.sys.SleepTools;
 import net.cdahmedeh.murale.util.type.CollectionTools;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -33,13 +32,12 @@ public class WallpaperFlow {
             @Override
             public void run() {
                 while (true) {
-                    TimeTools.sleep(1000);
+                    SleepTools.sleep(1000);
 
                     if (timeLeft >= 0) {
                         timeLeft--;
                     }
 
-                    System.out.println(timeLeft);
                     AppContext.getEventBus().post(new TimePassedEvent());
 
                     if (timeLeft == 0) {

@@ -2,21 +2,13 @@ package net.cdahmedeh.murale.ui.panel;
 
 import com.alee.extended.button.WebSplitButton;
 import com.alee.extended.panel.GroupPanel;
-import com.alee.extended.statusbar.WebStatusBar;
-import com.alee.laf.button.WebButton;
 import com.alee.laf.menu.*;
 import com.alee.laf.panel.WebPanel;
-import com.alee.managers.hotkey.Hotkey;
-import net.cdahmedeh.murale.app.AppContext;
-import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.provider.reddit.RedditProvider;
-import net.cdahmedeh.murale.service.ConfigurationService;
-import net.cdahmedeh.murale.ui.frame.AboutFrame;
-import net.cdahmedeh.murale.ui.starter.UIStarter;
+import net.cdahmedeh.murale.ui.dialog.RedditDialog;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,10 +51,7 @@ public class MainPanel extends WebPanel {
             redditItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    RedditProvider provider = new RedditProvider();
-                    RedditPanel redditPanel = new RedditPanel();
-                    redditPanel.loadProvider(provider);
-                    RedditProvider diff = redditPanel.readProvider(provider);
+                    RedditDialog redditDialog = new RedditDialog(null);
                 }
             });
         }

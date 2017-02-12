@@ -19,4 +19,8 @@ public class AppContext {
 
     @Getter @Setter
     private static MainFrame mainFrame;
+
+    public static void exit() {
+        System.exit(0);
+    }
 }

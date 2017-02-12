@@ -7,7 +7,7 @@ import com.alee.laf.menu.WebMenuItem;
 import com.alee.laf.panel.WebPanel;
 import net.cdahmedeh.murale.app.AppContext;
 import net.cdahmedeh.murale.icon.Icons;
-import net.cdahmedeh.murale.ui.frame.AboutFrame;
+import net.cdahmedeh.murale.ui.dialog.AboutDialog;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -76,7 +76,7 @@ public class MenuBarPanel extends WebPanel {
         aboutItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AboutFrame();
+                new AboutDialog();
             }
         });
         helpMenu.add(aboutItem);

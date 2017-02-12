@@ -1,7 +1,8 @@
-package net.cdahmedeh.murale.ui.frame;
+package net.cdahmedeh.murale.ui.dialog;
 
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
+import com.alee.laf.rootpane.WebDialog;
 import com.alee.laf.rootpane.WebFrame;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.ui.panel.MainPanel;
@@ -12,8 +13,9 @@ import java.awt.*;
 /**
  * Created by cdahmedeh on 2/9/2017.
  */
-public class AboutFrame extends WebFrame {
-    public AboutFrame() {
+public class AboutDialog extends WebDialog {
+    public AboutDialog() {
+        setModalityType(ModalityType.APPLICATION_MODAL);
         setTitle("About Murale");
         setIconImage(Icons.getIcon("about").getImage());
 

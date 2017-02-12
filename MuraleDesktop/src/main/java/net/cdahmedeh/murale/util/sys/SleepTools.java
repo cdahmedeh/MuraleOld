@@ -1,9 +1,11 @@
 package net.cdahmedeh.murale.util.sys;
 
 /**
+ * Simplified sleep method.
+ *
  * Created by cdahmedeh on 2/7/2017.
  */
-public class TimeTools {
+public class SleepTools {
     public static void sleep(int millis) {
         try {
             Thread.sleep(millis);

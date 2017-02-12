@@ -2,6 +2,7 @@ package net.cdahmedeh.murale.ui.frame;
 
 import com.alee.laf.WebLookAndFeel;
 import com.alee.laf.rootpane.WebFrame;
+import net.cdahmedeh.murale.app.AppContext;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.run.Run006MainPanel;
 import net.cdahmedeh.murale.ui.panel.MainPanel;
@@ -25,5 +26,13 @@ public class MainFrame extends WebFrame {
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
+    }
+
+    public void toggleVisible() {
+        if (getState() == ICONIFIED) {
+            setState(NORMAL);
+        } else {
+            setVisible(!isVisible());
+        }
     }
 }

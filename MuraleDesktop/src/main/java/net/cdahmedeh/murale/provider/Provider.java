@@ -25,6 +25,8 @@ public abstract class Provider {
 
     public abstract String getDescription();
 
+    public abstract String getIconName();
+
     public void loadConfiguration(Map<String, String> configuration) {
         uuid = configuration.getOrDefault("uuid", createUuid());
         clazz = configuration.getOrDefault("class", getClass().getName());

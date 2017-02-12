@@ -58,6 +58,11 @@ public class RedditProvider extends Provider {
     }
 
     @Override
+    public String getIconName() {
+        return "reddit";
+    }
+
+    @Override
     public void loadConfiguration(Map<String, String> configuration) {
         super.loadConfiguration(configuration);
         subreddit = configuration.getOrDefault("subreddit", defaultSubreddit);

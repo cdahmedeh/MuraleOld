@@ -1,25 +1,27 @@
 package net.cdahmedeh.murale.util.net;
 
+import net.cdahmedeh.murale.app.AppConstants;
 import net.cdahmedeh.murale.error.InternetConnectionException;
-import net.cdahmedeh.murale.util.io.IOTools;
-import org.apache.http.client.ClientProtocolException;
+import net.cdahmedeh.murale.util.io.CloseableTools;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
-import java.util.Base64;
 
-import static java.util.Base64.*;
+import static net.cdahmedeh.murale.app.AppConstants.APP_CODENAME;
+import static net.cdahmedeh.murale.app.AppConstants.APP_NAME;
+import static net.cdahmedeh.murale.app.AppConstants.APP_VERSION;
 import static org.apache.commons.codec.binary.Base64.encodeBase64String;
-import static org.apache.http.HttpHeaders.USER_AGENT;
 
 /**
+ * Various methods for dealing with HTTP requests.
+ *
  * Created by cdahmedeh on 1/22/2017.
  */
 public class NetTools {
-    public static final String USER_AGENT = "Murale/0.1";
+    public static final String USER_AGENT = APP_NAME + "/" + APP_VERSION;
 
     /**
      * Creates the value required for the 'Authentication' header if using
@@ -55,7 +57,7 @@ public class NetTools {
         } catch (IOException e) {
             throw new InternetConnectionException("Failed to get content type for URL " + url, e);
         } finally {
-            IOTools.safeClose(response, client);
+            CloseableTools.safeClose(response, client);
         }
     }
 

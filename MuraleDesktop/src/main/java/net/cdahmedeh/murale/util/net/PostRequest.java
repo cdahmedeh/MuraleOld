@@ -3,6 +3,7 @@ package net.cdahmedeh.murale.util.net;
 import com.google.gson.Gson;
 import net.cdahmedeh.murale.error.DataFormatException;
 import net.cdahmedeh.murale.error.InternetConnectionException;
+import net.cdahmedeh.murale.logging.Logging;
 import net.cdahmedeh.murale.provider.reddit.api.RedditResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.NameValuePair;
@@ -21,14 +22,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Template for a JSON POST HTTP Request
+ *
  * Created by cdahmedeh on 1/28/2017.
  */
 public abstract class PostRequest {
     protected String responseContent = null;
-
-    public PostRequest() {
-
-    }
 
     public abstract String getUrl();
 
@@ -56,14 +55,16 @@ public abstract class PostRequest {
                 request.setEntity(new UrlEncodedFormEntity(postParams));
 
                 CloseableHttpClient client = NetTools.createHttpClient();
-
                 CloseableHttpResponse response = client.execute(request);
-
                 responseContent = IOUtils.toString(response.getEntity().getContent());
             } catch (UnsupportedEncodingException ex) {
-                throw new DataFormatException("Unable to parse request", ex);
+                String message = "Unable to parse request";
+                Logging.error(ex, message);
+                throw new DataFormatException(message, ex);
             } catch (IOException ex) {
-                throw new InternetConnectionException("Unable to make HTTP request", ex);
+                String message = "Unable to make HTTP request";
+                Logging.error(ex, message);
+                throw new InternetConnectionException(message, ex);
             }
         }
 

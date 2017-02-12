@@ -38,8 +38,6 @@ public class ProvidersListPanel extends JScrollPane {
 
     @Subscribe
     public void updateProviders(ProviderUpdatedEvent event) {
-        System.out.println(event);
-
         loadProviders();
     }
 
