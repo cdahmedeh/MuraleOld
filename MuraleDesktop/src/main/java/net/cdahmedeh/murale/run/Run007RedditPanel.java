@@ -1,7 +1,7 @@
 package net.cdahmedeh.murale.run;
 
 import com.alee.laf.WebLookAndFeel;
-import net.cdahmedeh.murale.provider.reddit.RedditProvider;
+import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.ui.dialog.RedditDialog;
 
 /**

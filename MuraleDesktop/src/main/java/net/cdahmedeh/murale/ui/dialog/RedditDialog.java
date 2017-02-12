@@ -5,27 +5,16 @@ import com.alee.laf.checkbox.WebCheckBox;
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import com.alee.laf.radiobutton.WebRadioButton;
-import com.alee.laf.rootpane.WebFrame;
 import com.alee.laf.spinner.WebSpinner;
 import com.alee.laf.text.WebTextField;
-import lombok.Getter;
-import lombok.Setter;
-import net.cdahmedeh.murale.app.AppContext;
-import net.cdahmedeh.murale.event.ProviderUpdatedEvent;
-import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
-import net.cdahmedeh.murale.provider.reddit.RedditProvider;
-import net.cdahmedeh.murale.service.ConfigurationService;
-import net.cdahmedeh.murale.ui.dialog.ProviderDialog;
+import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import static net.cdahmedeh.murale.provider.reddit.RedditProvider.RedditMode.*;
-import static net.cdahmedeh.murale.provider.reddit.RedditProvider.RedditTime.*;
+import static net.cdahmedeh.muralelib.provider.reddit.RedditProvider.RedditMode.*;
+import static net.cdahmedeh.muralelib.provider.reddit.RedditProvider.RedditTime.*;
 
 /**
  * Created by cdahmedeh on 2/4/2017.

@@ -5,7 +5,6 @@ import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.menu.*;
 import com.alee.laf.panel.WebPanel;
 import net.cdahmedeh.murale.icon.Icons;
-import net.cdahmedeh.murale.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.ui.dialog.RedditDialog;
 
 import javax.swing.*;

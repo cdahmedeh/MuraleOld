@@ -1,7 +1,7 @@
 package net.cdahmedeh.murale.run;
 
-import net.cdahmedeh.murale.provider.Provider;
-import net.cdahmedeh.murale.provider.reddit.RedditProvider;
+import net.cdahmedeh.muralelib.provider.Provider;
+import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.service.ConfigurationService;
 
 import java.util.List;

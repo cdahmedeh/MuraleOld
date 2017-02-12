@@ -1,7 +1,7 @@
 package net.cdahmedeh.murale.service;
 
-import net.cdahmedeh.murale.domain.Configuration;
-import net.cdahmedeh.murale.domain.Wallpaper;
+import net.cdahmedeh.muralelib.domain.Configuration;
+import net.cdahmedeh.muralelib.domain.Wallpaper;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

@@ -1,8 +1,8 @@
 package net.cdahmedeh.murale.run;
 
-import net.cdahmedeh.murale.domain.Wallpaper;
+import net.cdahmedeh.muralelib.domain.Wallpaper;
 import net.cdahmedeh.murale.service.DesktopService;
-import net.cdahmedeh.murale.provider.reddit.RedditProvider;
+import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 
 /**
  * Created by cdahmedeh on 1/30/2017.

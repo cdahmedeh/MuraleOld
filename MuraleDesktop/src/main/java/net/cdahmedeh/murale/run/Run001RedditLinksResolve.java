@@ -1,6 +1,6 @@
 package net.cdahmedeh.murale.run;
 
-import static net.cdahmedeh.murale.provider.reddit.RedditLinkResolver.resolve;
+import static net.cdahmedeh.muralelib.provider.reddit.RedditLinkResolver.resolve;
 
 /**
  * Created by cdahmedeh on 1/30/2017.

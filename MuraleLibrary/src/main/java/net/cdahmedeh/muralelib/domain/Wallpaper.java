@@ -1,4 +1,4 @@
-package net.cdahmedeh.murale.domain;
+package net.cdahmedeh.muralelib.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

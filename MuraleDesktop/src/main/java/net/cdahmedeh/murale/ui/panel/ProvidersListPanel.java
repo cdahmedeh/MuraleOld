@@ -3,7 +3,7 @@ package net.cdahmedeh.murale.ui.panel;
 import com.google.common.eventbus.Subscribe;
 import net.cdahmedeh.murale.app.AppContext;
 import net.cdahmedeh.murale.event.ProviderUpdatedEvent;
-import net.cdahmedeh.murale.provider.Provider;
+import net.cdahmedeh.muralelib.provider.Provider;
 import net.cdahmedeh.murale.service.ConfigurationService;
 import net.cdahmedeh.murale.ui.custom.ColouredComponentPanel;
 

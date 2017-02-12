@@ -6,9 +6,9 @@ import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import lombok.Getter;
 import lombok.Setter;
-import net.cdahmedeh.murale.provider.Provider;
+import net.cdahmedeh.muralelib.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
-import net.cdahmedeh.murale.provider.reddit.RedditProvider;
+import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.service.ConfigurationService;
 import net.cdahmedeh.murale.ui.dialog.RedditDialog;
 

@@ -6,7 +6,7 @@ import com.alee.laf.rootpane.WebDialog;
 import lombok.Getter;
 import lombok.Setter;
 import net.cdahmedeh.murale.icon.Icons;
-import net.cdahmedeh.murale.provider.Provider;
+import net.cdahmedeh.muralelib.provider.Provider;
 import net.cdahmedeh.murale.service.ConfigurationService;
 
 import javax.swing.*;
