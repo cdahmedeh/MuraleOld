@@ -1,13 +1,12 @@
 package net.cdahmedeh.murale.provider.reddit.api;
 
-import com.google.gson.Gson;
-import net.cdahmedeh.murale.util.net.PostRequest;
+import net.cdahmedeh.muralelib.util.net.PostRequest;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static net.cdahmedeh.murale.util.net.NetTools.generateBasicAuthHeader;
+import static net.cdahmedeh.muralelib.util.net.NetTools.generateBasicAuthHeader;
 
 /**
  * Created by cdahmedeh on 1/30/2017.

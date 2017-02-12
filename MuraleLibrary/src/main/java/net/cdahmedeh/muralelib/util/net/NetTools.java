@@ -1,8 +1,7 @@
-package net.cdahmedeh.murale.util.net;
+package net.cdahmedeh.muralelib.util.net;
 
-import net.cdahmedeh.murale.app.AppConstants;
-import net.cdahmedeh.murale.error.InternetConnectionException;
-import net.cdahmedeh.murale.util.io.CloseableTools;
+import net.cdahmedeh.muralelib.error.InternetConnectionException;
+import net.cdahmedeh.muralelib.util.io.CloseableTools;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -10,9 +9,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
 
-import static net.cdahmedeh.murale.app.AppConstants.APP_CODENAME;
-import static net.cdahmedeh.murale.app.AppConstants.APP_NAME;
-import static net.cdahmedeh.murale.app.AppConstants.APP_VERSION;
 import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 
 /**
@@ -21,7 +17,7 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64String;
  * Created by cdahmedeh on 1/22/2017.
  */
 public class NetTools {
-    public static final String USER_AGENT = APP_NAME + "/" + APP_VERSION;
+    public static final String USER_AGENT = "MuraleLib" + "/" + "0.1";
 
     /**
      * Creates the value required for the 'Authentication' header if using

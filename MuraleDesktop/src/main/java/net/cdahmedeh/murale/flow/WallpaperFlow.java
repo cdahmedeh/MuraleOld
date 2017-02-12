@@ -10,8 +10,8 @@ import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.domain.Wallpaper;
 import net.cdahmedeh.murale.service.ConfigurationService;
 import net.cdahmedeh.murale.service.DesktopService;
-import net.cdahmedeh.murale.util.sys.SleepTools;
-import net.cdahmedeh.murale.util.type.CollectionTools;
+import net.cdahmedeh.muralelib.util.sys.SleepTools;
+import net.cdahmedeh.muralelib.util.type.CollectionTools;
 
 import java.util.List;
 

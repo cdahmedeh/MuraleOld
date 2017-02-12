@@ -1,13 +1,11 @@
 package net.cdahmedeh.murale.provider.reddit;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Getter;
 import lombok.Setter;
-import net.cdahmedeh.murale.domain.Configuration;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.domain.Wallpaper;
 import net.cdahmedeh.murale.provider.reddit.api.*;
-import net.cdahmedeh.murale.util.type.CollectionTools;
+import net.cdahmedeh.muralelib.util.type.CollectionTools;
 
 import java.util.Collection;
 import java.util.Map;

@@ -1,9 +1,8 @@
 package net.cdahmedeh.murale.icon;
 
 import com.google.common.io.Resources;
-import net.cdahmedeh.murale.error.ResourceMissingException;
+import net.cdahmedeh.muralelib.error.ResourceMissingException;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 
 import javax.swing.*;
 import java.io.IOException;

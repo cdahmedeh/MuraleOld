@@ -1,6 +1,6 @@
-package net.cdahmedeh.murale.util.io;
+package net.cdahmedeh.muralelib.util.io;
 
-import net.cdahmedeh.murale.logging.Logging;
+import net.cdahmedeh.muralelib.logging.Logging;
 
 import java.io.Closeable;
 import java.io.IOException;

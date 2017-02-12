@@ -1,4 +1,4 @@
-package net.cdahmedeh.murale.error;
+package net.cdahmedeh.muralelib.error;
 
 /**
  * Created by cdahmedeh on 1/28/2017.

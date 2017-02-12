@@ -1,9 +1,8 @@
 package net.cdahmedeh.murale.provider.reddit.api;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.cdahmedeh.murale.util.net.GetRequest;
+import net.cdahmedeh.muralelib.util.net.GetRequest;
 
 import java.util.HashMap;
 import java.util.Map;

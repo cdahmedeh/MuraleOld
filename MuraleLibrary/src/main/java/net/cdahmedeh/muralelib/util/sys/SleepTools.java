@@ -1,4 +1,4 @@
-package net.cdahmedeh.murale.util.sys;
+package net.cdahmedeh.muralelib.util.sys;
 
 /**
  * Simplified sleep method.

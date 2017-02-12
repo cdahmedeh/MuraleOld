@@ -2,7 +2,7 @@ package net.cdahmedeh.murale.provider.reddit;
 
 import net.cdahmedeh.murale.provider.reddit.noembed.NoEmbedData;
 import net.cdahmedeh.murale.provider.reddit.noembed.NoEmbedRequest;
-import net.cdahmedeh.murale.util.net.NetTools;
+import net.cdahmedeh.muralelib.util.net.NetTools;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

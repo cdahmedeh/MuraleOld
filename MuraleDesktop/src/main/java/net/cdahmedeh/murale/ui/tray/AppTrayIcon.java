@@ -2,15 +2,12 @@ package net.cdahmedeh.murale.ui.tray;
 
 import net.cdahmedeh.murale.app.AppContext;
 import net.cdahmedeh.murale.icon.Icons;
-import net.cdahmedeh.murale.logging.Logging;
-import net.cdahmedeh.murale.ui.frame.MainFrame;
+import net.cdahmedeh.muralelib.logging.Logging;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.*;
-
-import javax.swing.*;
 
 import static net.cdahmedeh.murale.app.AppConstants.APP_NAME;
 

@@ -1,32 +1,26 @@
-package net.cdahmedeh.murale.util.net;
+package net.cdahmedeh.muralelib.util.net;
 
 import com.google.gson.Gson;
-import net.cdahmedeh.murale.error.DataFormatException;
-import net.cdahmedeh.murale.error.InternetConnectionException;
-import net.cdahmedeh.murale.logging.Logging;
-import net.cdahmedeh.murale.provider.reddit.api.RedditResponse;
+import net.cdahmedeh.muralelib.error.DataFormatException;
+import net.cdahmedeh.muralelib.error.InternetConnectionException;
+import net.cdahmedeh.muralelib.logging.Logging;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
- * Template for a JSON POST HTTP Request
+ * Template for a JSON GET HTTP Request
  *
  * Created by cdahmedeh on 1/28/2017.
  */
-public abstract class PostRequest {
+public abstract class GetRequest {
     protected String responseContent = null;
 
     public abstract String getUrl();
@@ -35,24 +29,14 @@ public abstract class PostRequest {
         return new HashMap<>();
     };
 
-    public Map<String, String> getParams() {
-        return new HashMap<>();
-    };
-
     public String get() {
         if (responseContent == null) {
             try {
-                HttpPost request = new HttpPost(getUrl());
+                HttpGet request = new HttpGet(getUrl());
 
-                for (Map.Entry<String, String> header : getHeaders().entrySet()) {
+                for (Entry<String, String> header : getHeaders().entrySet()) {
                     request.setHeader(header.getKey(), header.getValue());
                 }
-
-                List<NameValuePair> postParams = new ArrayList<>();
-                for (Map.Entry<String, String> param : getParams().entrySet()) {
-                    postParams.add(new BasicNameValuePair(param.getKey(), param.getValue()));
-                }
-                request.setEntity(new UrlEncodedFormEntity(postParams));
 
                 CloseableHttpClient client = NetTools.createHttpClient();
                 CloseableHttpResponse response = client.execute(request);

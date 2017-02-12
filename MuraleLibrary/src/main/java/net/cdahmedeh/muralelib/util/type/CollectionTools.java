@@ -1,7 +1,6 @@
-package net.cdahmedeh.murale.util.type;
+package net.cdahmedeh.muralelib.util.type;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

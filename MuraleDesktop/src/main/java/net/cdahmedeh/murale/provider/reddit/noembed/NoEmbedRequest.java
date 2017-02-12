@@ -1,12 +1,8 @@
 package net.cdahmedeh.murale.provider.reddit.noembed;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
-import net.cdahmedeh.murale.util.net.GetRequest;
-
-import java.util.HashMap;
-import java.util.Map;
+import net.cdahmedeh.muralelib.util.net.GetRequest;
 
 /**
  * Created by cdahmedeh on 1/28/2017.

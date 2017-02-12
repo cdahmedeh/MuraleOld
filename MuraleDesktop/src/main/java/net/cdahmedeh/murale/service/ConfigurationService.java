@@ -1,10 +1,10 @@
 package net.cdahmedeh.murale.service;
 
 import net.cdahmedeh.murale.app.AppContext;
-import net.cdahmedeh.murale.error.ConfigurationErrorException;
 import net.cdahmedeh.murale.event.ProviderUpdatedEvent;
 import net.cdahmedeh.murale.provider.Provider;
 import net.cdahmedeh.murale.domain.Configuration;
+import net.cdahmedeh.muralelib.error.ConfigurationErrorException;
 import org.ini4j.Profile.Section;
 import org.ini4j.Wini;
 
