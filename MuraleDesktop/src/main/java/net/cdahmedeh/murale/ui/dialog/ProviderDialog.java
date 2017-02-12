@@ -25,7 +25,7 @@ public abstract class ProviderDialog<P extends Provider> extends WebDialog {
     protected P provider;
 
     public ProviderDialog(P p) {
-        if (provider == null) {
+        if (p == null) {
             setProvider(loadNewProvider());
         } else {
             setProvider(p);
@@ -45,7 +45,7 @@ public abstract class ProviderDialog<P extends Provider> extends WebDialog {
 
         add(new ButtonPanel(), BorderLayout. SOUTH);
 
-        loadProvider(provider);
+        loadProvider(getProvider());
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
