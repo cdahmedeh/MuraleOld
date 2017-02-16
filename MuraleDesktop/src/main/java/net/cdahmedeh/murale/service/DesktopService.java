@@ -12,7 +12,7 @@ import java.net.URL;
  * Created by cdahmedeh on 1/30/2017.
  */
 public class DesktopService {
-    public static String EXEC = "C:\\Users\\cdahmedeh\\OneDrive\\Projects\\Murale\\MuraleWinCommand\\bin\\Debug\\MuraleWinCommand.exe";
+    public static String EXEC = "bin\\MuraleWinCommand.exe";
     private static final String SAVED_WALLPAPERS_LOCATION = System.getProperty("user.home") + "/.murale/wallpapers/";
 
 

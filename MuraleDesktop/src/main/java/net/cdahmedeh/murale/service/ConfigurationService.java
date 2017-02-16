@@ -31,6 +31,7 @@ public class ConfigurationService {
 
         try {
             File providerConfigDir = new File(PROVIDER_CONFIG_LOCATION);
+            providerConfigDir.mkdirs();
 
             for (File configFile: providerConfigDir.listFiles()) {
                 Map<String, String> configMap = new HashMap<>();

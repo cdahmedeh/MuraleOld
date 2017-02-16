@@ -1,0 +1,123 @@
+import java.nio.file.Files
+
+group 'net.cdahmedeh'
+version '0.3'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'http://maven-eclipse.github.io/maven' }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'net.cdahmedeh.murale.app.AppStarter'
+    }
+}
+
+task copyLibs(type: Copy) {
+    from configurations.compile
+    into 'release/lib'
+    exclude '*swt*'
+}
+
+task copySwt(type: Copy) {
+    from 'ext/lib'
+    into 'release/lib'
+}
+
+task copyBins(type: Copy) {
+    from 'bin'
+    into 'release/bin'
+}
+
+task copyMuraleJar(type: Copy) {
+    from "build/libs/${project.name}-${project.version}.jar"
+    into 'release'
+    rename '.*', 'murale.jar'
+}
+
+task copyMuraleLibJar(type: Copy) {
+    from "../MuraleLibrary/build/libs/MuraleLibrary-0.1.jar"
+    into 'release'
+    rename '.*', 'muralelib.jar'
+}
+
+task copyJre(type: Copy) {
+    from 'ext/jre'
+    into 'release/jre'
+}
+
+task copyStartScript(type: Copy) {
+    from 'ext/murale.bat'
+    into 'release'
+}
+
+task release {
+    // Build Murale Jars
+    dependsOn assemble
+    dependsOn jar
+
+    // Create Release Directory
+    def releaseDir = file('release')
+    releaseDir.mkdir()
+
+    // Copy Murale Jars into release Directory
+    dependsOn copyMuraleJar
+    dependsOn copyMuraleLibJar
+
+    // Copy All Dependencies into lib Folder
+    dependsOn copyLibs
+
+    // Copy 32-Bit SWT Lib
+    dependsOn copySwt
+
+    // Copy Binaries
+    dependsOn copyBins
+    
+    // Copy JRE
+    dependsOn copyJre
+
+    // Copy Start Script
+    dependsOn copyStartScript
+}
+
+task unRelease {
+    dependsOn clean
+    GFileUtils.deleteDirectory(file('build/distributions'))
+    GFileUtils.deleteDirectory(file('release'))
+}
+
+task zipRelease(type: Zip) {
+    from 'release'
+    dependsOn release
+}
+
+dependencies {
+    // Murale Library
+    compile project(':MuraleLibrary')
+
+    // Annotations
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.6'
+
+    // Utilities
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+
+    // Persistence
+    compile group: 'org.ini4j', name: 'ini4j', version: '0.5.4'
+
+    // Testing Frameworks
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // Image Handling
+    compile group: 'org.imgscalr', name: 'imgscalr-lib', version: '4.2'
+
+    // UI
+    compile group: 'de.sciss', name: 'weblaf', version: '1.28'
+    compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.0'
+    compile group: 'org.eclipse.swt', name: 'org.eclipse.swt.win32.win32.x86_64', version: '4.6.1'
+}
