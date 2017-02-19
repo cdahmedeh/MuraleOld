@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1270799675/MuraleLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/-1270799675/MuraleLibrary.iml" group="MuraleLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1270799675/MuraleLibrary_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1270799675/MuraleLibrary_main.iml" group="MuraleLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1270799675/MuraleLibrary_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1270799675/MuraleLibrary_test.iml" group="MuraleLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/murale.iml" filepath="$PROJECT_DIR$/.idea/modules/murale.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/murale_main.iml" filepath="$PROJECT_DIR$/.idea/modules/murale_main.iml" group="murale" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/murale_test.iml" filepath="$PROJECT_DIR$/.idea/modules/murale_test.iml" group="murale" />
+    </modules>
+  </component>
+</project>
