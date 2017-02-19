@@ -1,9 +1,8 @@
-import java.nio.file.Files
-
 group 'net.cdahmedeh'
 version '0.3'
 
 apply plugin: 'java'
+apply from: 'release.gradle'
 
 sourceCompatibility = 1.8
 
@@ -16,84 +15,6 @@ jar {
     manifest {
         attributes 'Main-Class' : 'net.cdahmedeh.murale.app.AppStarter'
     }
-}
-
-task copyLibs(type: Copy) {
-    from configurations.compile
-    into 'release/lib'
-    exclude '*swt*'
-}
-
-task copySwt(type: Copy) {
-    from 'ext/lib'
-    into 'release/lib'
-}
-
-task copyBins(type: Copy) {
-    from 'bin'
-    into 'release/bin'
-}
-
-task copyMuraleJar(type: Copy) {
-    from "build/libs/${project.name}-${project.version}.jar"
-    into 'release'
-    rename '.*', 'murale.jar'
-}
-
-task copyMuraleLibJar(type: Copy) {
-    from "../MuraleLibrary/build/libs/MuraleLibrary-0.1.jar"
-    into 'release'
-    rename '.*', 'muralelib.jar'
-}
-
-task copyJre(type: Copy) {
-    from 'ext/jre'
-    into 'release/jre'
-}
-
-task copyStartScript(type: Copy) {
-    from 'ext/murale.bat'
-    into 'release'
-}
-
-task release {
-    // Build Murale Jars
-    dependsOn assemble
-    dependsOn jar
-
-    // Create Release Directory
-    def releaseDir = file('release')
-    releaseDir.mkdir()
-
-    // Copy Murale Jars into release Directory
-    dependsOn copyMuraleJar
-    dependsOn copyMuraleLibJar
-
-    // Copy All Dependencies into lib Folder
-    dependsOn copyLibs
-
-    // Copy 32-Bit SWT Lib
-    dependsOn copySwt
-
-    // Copy Binaries
-    dependsOn copyBins
-    
-    // Copy JRE
-    dependsOn copyJre
-
-    // Copy Start Script
-    dependsOn copyStartScript
-}
-
-task unRelease {
-    dependsOn clean
-    GFileUtils.deleteDirectory(file('build/distributions'))
-    GFileUtils.deleteDirectory(file('release'))
-}
-
-task zipRelease(type: Zip) {
-    from 'release'
-    dependsOn release
 }
 
 dependencies {
