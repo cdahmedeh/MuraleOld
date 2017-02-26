@@ -18,18 +18,17 @@ public class RedditRequest extends GetRequest {
     @Getter private final String time;
     @Getter private final int count;
 
-
     @Override
     public String getUrl() {
-        String t = "";
+        String timeQuery = "";
         if (mode.equals("top") || mode.equals("controversial")) {
-            t = "&t=" + time;
+            timeQuery = "&t=" + time;
         }
 
         if (mode.equals("random")) {
             return "https://oauth.reddit.com/r/" + subreddit + "/" + mode;
         } else {
-            return "https://oauth.reddit.com/r/" + subreddit + "/" + mode + "?" + "count=" + count + t;
+            return "https://oauth.reddit.com/r/" + subreddit + "/" + mode + "?" + "count=" + count + timeQuery;
         }
     }
 

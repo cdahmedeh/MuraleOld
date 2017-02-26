@@ -19,6 +19,7 @@ import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 import net.cdahmedeh.muralelib.util.type.CollectionTools;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by cdahmedeh on 2/19/2017.
@@ -58,10 +59,29 @@ public class WallhavenProvider extends Provider {
     public String getDescription() {
         String desc = "<html>";
 
-        desc += "tags: ";
-        desc += "<b>[";
-        desc += tags;
-        desc += "]</b>";
+        if (tags.isEmpty() == false) {
+            desc += "tags: ";
+            desc += "<b>[";
+            desc += tags;
+            desc += "]</b>";
+        }
+
+        if (tags.isEmpty() == false && category.isEmpty() == false) {
+            desc += " and ";
+        }
+
+        if (category.isEmpty() == false) {
+            desc += "categories: ";
+            desc += "<b>[";
+            desc += Joiner.on(",").join(category.stream().map(i->i.name().toLowerCase()).collect(Collectors.toList()));
+            desc += "]</b>";
+        }
+
+        desc += " ";
+        desc += "sorted by ";
+        desc += sorting.name().toLowerCase().replaceAll("_", " ");
+        desc += " ";
+        desc += order == Order.ASC ? "ascending" : "descending";
 
         desc += "</html>";
         return desc;

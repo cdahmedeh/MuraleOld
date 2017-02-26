@@ -1,5 +1,6 @@
 package net.cdahmedeh.muralelib.provider.reddit;
 
+import net.cdahmedeh.muralelib.error.DataFormatException;
 import net.cdahmedeh.muralelib.provider.reddit.noembed.NoEmbedData;
 import net.cdahmedeh.muralelib.provider.reddit.noembed.NoEmbedRequest;
 import net.cdahmedeh.muralelib.util.net.NetTools;
@@ -75,7 +76,7 @@ public class RedditLinkResolver {
         noEmbedRequest.setOriginalUrl(url);
 
         NoEmbedData noEmbedData = noEmbedRequest.getJson(NoEmbedData.class);
-        return noEmbedData.getMedia_url();
+        return noEmbedData.getMediaUrl();
     }
 
     private static boolean isReddit(String url) {
@@ -93,7 +94,7 @@ public class RedditLinkResolver {
                 imageLink = element.attr("src");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DataFormatException("Could not scrape Reddit page", e);
         }
 
         return imageLink;

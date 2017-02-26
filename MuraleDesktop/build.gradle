@@ -1,5 +1,5 @@
 group 'net.cdahmedeh'
-version '0.3'
+version '0.3.1'
 
 apply plugin: 'java'
 apply from: 'release.gradle'

@@ -7,7 +7,7 @@ import net.cdahmedeh.muralelib.domain.Wallpaper;
 import net.cdahmedeh.muralelib.provider.reddit.api.json.RedditEntry;
 import net.cdahmedeh.muralelib.provider.reddit.api.json.RedditPost;
 import net.cdahmedeh.muralelib.provider.reddit.api.request.RedditRequest;
-import net.cdahmedeh.muralelib.provider.reddit.api.request.RedditResponse;
+import net.cdahmedeh.muralelib.provider.reddit.api.json.RedditResponse;
 import net.cdahmedeh.muralelib.util.type.CollectionTools;
 
 import java.util.Collection;
