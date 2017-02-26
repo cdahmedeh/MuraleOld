@@ -23,11 +23,16 @@ public class AboutDialog extends WebDialog {
         setTitle("About Murale");
         setIconImage(Icons.getIcon("about").getImage());
 
-        setSize(320, 240);
+        setSize(420, 420);
         setLocationRelativeTo(null);
 
         WebPanel frame = new WebPanel();
         add(frame);
+
+        setBackground(Color.WHITE);
+        frame.setBackground(Color.WHITE);
+
+        frame.setMargin(5);
 
         BoxLayout manager = new BoxLayout(frame, BoxLayout.Y_AXIS);
 
@@ -39,9 +44,9 @@ public class AboutDialog extends WebDialog {
         WebLabel version = new WebLabel("Version " + APP_VERSION + " " + APP_CODENAME);
         version.setAlignmentX(CENTER_ALIGNMENT);
         version.setFontSize(20);
-        JLabel imageIcon = new JLabel(Icons.getIcon("murale"));
+        JLabel imageIcon = new JLabel(Icons.getIcon("murale-about"));
         imageIcon.setAlignmentX(CENTER_ALIGNMENT);
-        JLabel copyright = new JLabel("© cdahmedeh 2016");
+        JLabel copyright = new JLabel("© cdahmedeh 2017");
         copyright.setAlignmentX(CENTER_ALIGNMENT);
 
         frame.add(appName);

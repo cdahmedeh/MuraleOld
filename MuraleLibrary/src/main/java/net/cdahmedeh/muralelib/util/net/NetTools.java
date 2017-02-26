@@ -18,6 +18,7 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64String;
  */
 public class NetTools {
     public static final String USER_AGENT = "MuraleLib" + "/" + "0.1";
+//    public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
 
     /**
      * Creates the value required for the 'Authentication' header if using

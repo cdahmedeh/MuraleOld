@@ -8,6 +8,8 @@ import lombok.ToString;
 import java.util.UUID;
 
 /**
+ * Information about a wallpaper.
+ *
  * Created by cdahmedeh on 1/30/2017.
  */
 @RequiredArgsConstructor

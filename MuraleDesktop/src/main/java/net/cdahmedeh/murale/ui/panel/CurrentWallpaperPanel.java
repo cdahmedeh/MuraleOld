@@ -117,6 +117,7 @@ public class CurrentWallpaperPanel extends WebPanel {
         titleLabel.setText(wallpaper.getTitle());
         authorLabel.setText(wallpaper.getAuthor());
         originLabel.setLink(wallpaper.getOrigin());
+        originLabel.setOnPressAction(true);
     }
 
     private void updateImage()  {

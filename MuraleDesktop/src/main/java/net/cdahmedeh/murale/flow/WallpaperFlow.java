@@ -2,6 +2,7 @@ package net.cdahmedeh.murale.flow;
 
 import lombok.Getter;
 import net.cdahmedeh.murale.app.AppContext;
+import net.cdahmedeh.murale.event.NoProviderConfiguredEvent;
 import net.cdahmedeh.murale.event.TimePassedEvent;
 import net.cdahmedeh.murale.event.WallpaperRequestEvent;
 import net.cdahmedeh.murale.event.WallpaperRetrievedEvent;
@@ -14,6 +15,7 @@ import net.cdahmedeh.muralelib.util.sys.SleepTools;
 import net.cdahmedeh.muralelib.util.type.CollectionTools;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by cdahmedeh on 1/30/2017.
@@ -61,6 +63,12 @@ public class WallpaperFlow {
             @Override
             public void run() {
                 List<Provider> providers = ConfigurationService.loadProviders();
+                if (providers.isEmpty()) {
+                    AppContext.getEventBus().post(new WallpaperRetrievedEvent());
+                    return;
+                }
+
+                providers = providers.stream().filter(p -> p.isEnabled()).collect(Collectors.toList());
                 currentProvider = CollectionTools.pickRandom(providers);
                 currentWallpaper = currentProvider.getRandomWallpaper();
 
@@ -68,6 +76,8 @@ public class WallpaperFlow {
                 timeLeft = configuration.getWaitTime() * 60;
 
                 DesktopService.setWallpaper(currentWallpaper, configuration);
+
+                System.gc();
 
                 AppContext.getEventBus().post(new WallpaperRetrievedEvent());
             }

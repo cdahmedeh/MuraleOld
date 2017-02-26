@@ -5,6 +5,6 @@ package net.cdahmedeh.murale.app;
  */
 public class AppConstants {
     public static final String APP_NAME = "Murale";
-    public static final String APP_VERSION = "0.3";
-    public static final String APP_CODENAME = "Alpha Fundamentum";
+    public static final String APP_VERSION = "0.3.1";
+    public static final String APP_CODENAME = "Beta Paludamentum";
 }

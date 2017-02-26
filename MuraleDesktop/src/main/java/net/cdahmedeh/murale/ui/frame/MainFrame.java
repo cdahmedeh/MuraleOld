@@ -16,7 +16,7 @@ import java.awt.*;
 public class MainFrame extends WebFrame {
     public MainFrame() {
         setTitle("Murale");
-        setIconImage(Icons.getIcon("murale").getImage());
+        setIconImage(Icons.getIcon("murale-32").getImage());
 
         setSize(640, 540);
         setLocationRelativeTo(null);

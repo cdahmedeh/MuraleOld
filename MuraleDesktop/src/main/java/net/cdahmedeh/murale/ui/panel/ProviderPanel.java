@@ -2,16 +2,21 @@ package net.cdahmedeh.murale.ui.panel;
 
 import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.button.WebButton;
+import com.alee.laf.checkbox.WebCheckBox;
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.optionpane.WebOptionPane;
 import com.alee.laf.panel.WebPanel;
 import lombok.Getter;
 import lombok.Setter;
+import net.cdahmedeh.murale.ui.dialog.ProviderDialog;
+import net.cdahmedeh.murale.ui.dialog.WallhavenDialog;
+import net.cdahmedeh.muralelib.domain.Configuration;
 import net.cdahmedeh.muralelib.provider.Provider;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.muralelib.provider.reddit.RedditProvider;
 import net.cdahmedeh.murale.service.ConfigurationService;
 import net.cdahmedeh.murale.ui.dialog.RedditDialog;
+import net.cdahmedeh.muralelib.provider.wallhaven.WallhavenProvider;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +39,26 @@ public class ProviderPanel extends WebPanel {
         setBackground(Color.white);
         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        add(new TitlePanel(), BorderLayout.WEST);
+        addSelectedCheckbox();
+
+        add(new TitlePanel(), BorderLayout.CENTER);
         add(new ButtonPanel(), BorderLayout.EAST);
+    }
+
+    private void addSelectedCheckbox() {
+        WebCheckBox selectedCheck = new WebCheckBox();
+        selectedCheck.setMargin(0,0,0,10);
+        add(selectedCheck, BorderLayout.WEST);
+
+        selectedCheck.setSelected(provider.isEnabled());
+
+        selectedCheck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                provider.setEnabled(selectedCheck.isSelected());
+                ConfigurationService.saveProvider(provider);
+            }
+        });
     }
 
     public class TitlePanel extends WebPanel {
@@ -94,6 +117,8 @@ public class ProviderPanel extends WebPanel {
     private void loadSettings() {
         if (provider instanceof RedditProvider) {
             RedditDialog redditDialog = new RedditDialog((RedditProvider)provider);
+        } else if (provider instanceof WallhavenProvider) {
+            WallhavenDialog wallhavenDialog = new WallhavenDialog((WallhavenProvider)provider);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.alee.laf.menu.*;
 import com.alee.laf.panel.WebPanel;
 import net.cdahmedeh.murale.icon.Icons;
 import net.cdahmedeh.murale.ui.dialog.RedditDialog;
+import net.cdahmedeh.murale.ui.dialog.WallhavenDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,6 +52,16 @@ public class MainPanel extends WebPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     RedditDialog redditDialog = new RedditDialog(null);
+                }
+            });
+
+            WebMenuItem wallhavenItem = new WebMenuItem("wallhaven", Icons.getIcon("wallhaven"));
+            webMenu.add(wallhavenItem);
+
+            wallhavenItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    WallhavenDialog wallhavenDialog = new WallhavenDialog(null);
                 }
             });
         }

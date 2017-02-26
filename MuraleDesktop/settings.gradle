@@ -1,4 +1,5 @@
 rootProject.name = 'murale'
+
 includeFlat 'MuraleLibrary'
 include ':MuraleLibrary'
 project(':MuraleLibrary').projectDir == new File(settingsDir, '../MuraleLibrary')

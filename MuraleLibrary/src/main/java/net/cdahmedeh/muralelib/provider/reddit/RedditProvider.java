@@ -48,7 +48,7 @@ public class RedditProvider extends Provider {
 
      @Override
     public String getName() {
-        return "Reddit";
+        return "reddit";
     }
 
     @Override
@@ -113,7 +113,7 @@ public class RedditProvider extends Provider {
             wallpaper = new Wallpaper(
                     redditPost.getTitle(),
                     redditPost.getAuthor(),
-                    redditPost.getPermalink(),
+                    "http://reddit.com" + redditPost.getPermalink(),
                     resolvedUrl
             );
         }
