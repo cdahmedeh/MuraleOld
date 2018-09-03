@@ -6,6 +6,7 @@ import net.cdahmedeh.murale.event.NoProviderConfiguredEvent;
 import net.cdahmedeh.murale.event.TimePassedEvent;
 import net.cdahmedeh.murale.event.WallpaperRequestEvent;
 import net.cdahmedeh.murale.event.WallpaperRetrievedEvent;
+import net.cdahmedeh.muralelib.logging.Logging;
 import net.cdahmedeh.muralelib.provider.Provider;
 import net.cdahmedeh.muralelib.domain.Configuration;
 import net.cdahmedeh.muralelib.domain.Wallpaper;
@@ -62,24 +63,32 @@ public class WallpaperFlow {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Provider> providers = ConfigurationService.loadProviders();
-                if (providers.isEmpty()) {
+                while (true) {
+                    List<Provider> providers = ConfigurationService.loadProviders();
+                    if (providers.isEmpty()) {
+                        AppContext.getEventBus().post(new WallpaperRetrievedEvent());
+                        return;
+                    }
+
+                    providers = providers.stream().filter(p -> p.isEnabled()).collect(Collectors.toList());
+                    currentProvider = CollectionTools.pickRandom(providers);
+                    try {
+                        currentWallpaper = currentProvider.getRandomWallpaper();
+                    } catch (Exception e) {
+                        Logging.error(e, "Unable to fetch wallpaper for provider %s. Trying again.", currentProvider.getClazz());
+                        continue;
+                    }
+
+                    Configuration configuration = ConfigurationService.loadUserConfiguration();
+                    timeLeft = configuration.getWaitTime() * 60;
+
+                    DesktopService.setWallpaper(currentWallpaper, configuration);
+
+                    System.gc();
+
                     AppContext.getEventBus().post(new WallpaperRetrievedEvent());
-                    return;
+                    break;
                 }
-
-                providers = providers.stream().filter(p -> p.isEnabled()).collect(Collectors.toList());
-                currentProvider = CollectionTools.pickRandom(providers);
-                currentWallpaper = currentProvider.getRandomWallpaper();
-
-                Configuration configuration = ConfigurationService.loadUserConfiguration();
-                timeLeft = configuration.getWaitTime() * 60;
-
-                DesktopService.setWallpaper(currentWallpaper, configuration);
-
-                System.gc();
-
-                AppContext.getEventBus().post(new WallpaperRetrievedEvent());
             }
         });
         thread.start();
